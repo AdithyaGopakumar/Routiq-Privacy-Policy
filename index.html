@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Routiq Privacy Policy | Offscript</title>
+  <meta name="description" content="Privacy Policy for Routiq: Habit Tracker, developed by Offscript. Routiq is an offline-first, privacy-focused application that stores all habit tracking data locally on your device.">
+  <meta name="author" content="Offscript">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#101310" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F6F7F5" media="(prefers-color-scheme: light)">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Routiq Privacy Policy">
+  <meta property="og:description" content="Learn how Routiq protects your privacy with local-first on-device SQLite storage, zero tracking SDKs, and offline habit reminders.">
+  <meta property="og:site_name" content="Routiq: Habit Tracker">
+  <meta property="og:image" content="./routiq-logo-full.png">
+  <link rel="icon" type="image/png" href="./routiq-logo-symbol.png">
+
+  <style>
+    /* ==========================================================================
+       ROUTIQ DESIGN SYSTEM & TOKENS (Swiss Editorial Style)
+       ========================================================================== */
+    :root {
+      /* Light Mode Palette */
+      --bg: #F6F7F5;
+      --surface: #FFFFFF;
+      --surface-elevated: #EDF0EB;
+      --surface-subtle: #F0F3EE;
+      --border: #D8DDD6;
+      --border-subtle: #E4E8E2;
+      --border-active: #5E7A52;
+
+      --text: #1C201C;
+      --text-secondary: #4F584C;
+      --text-muted: #788275;
+
+      --accent: #5E7A52;
+      --accent-hover: #49603F;
+      --accent-subtle: rgba(94, 122, 82, 0.12);
+      --accent-border: #B8CCA0;
+
+      --badge-bg: #EDF0EB;
+      --badge-text: #4F584C;
+      --pill-highlight-bg: rgba(94, 122, 82, 0.12);
+      --pill-highlight-text: #3D5335;
+
+      --code-bg: #EAEFE7;
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+      /* Typography & Spacing scale */
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --max-width: 740px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 9999px;
+    }
+
+    /* Dark Mode Palette */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101310;
+        --surface: #1B1F1B;
+        --surface-elevated: #232823;
+        --surface-subtle: #151815;
+        --border: #323831;
+        --border-subtle: #222722;
+        --border-active: #B8CCA0;
+
+        --text: #F1F1E9;
+        --text-secondary: #B2B8AD;
+        --text-muted: #7E867B;
+
+        --accent: #B8CCA0;
+        --accent-hover: #C9DAB5;
+        --accent-subtle: rgba(184, 204, 160, 0.15);
+        --accent-border: #5E7A52;
+
+        --badge-bg: #232823;
+        --badge-text: #B2B8AD;
+        --pill-highlight-bg: rgba(184, 204, 160, 0.15);
+        --pill-highlight-text: #D5E4C3;
+
+        --code-bg: #232823;
+        --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    /* ==========================================================================
+       BASE & RESET
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.68;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 0 1.25rem 4rem 1.25rem;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.5rem 1rem;
+      z-index: 100;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* ==========================================================================
+       CONTAINER & LAYOUT
+       ========================================================================== */
+    .page-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       HEADER (Swiss Editorial Masthead)
+       ========================================================================== */
+    header.site-header {
+      padding: 3.5rem 0 2rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .brand-identity {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-symbol-img {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border-subtle);
+      display: block;
+    }
+
+    .brand-wordmark {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .brand-banner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0c160f;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.6rem 1rem;
+      margin-bottom: 1.5rem;
+      max-width: 220px;
+    }
+
+    .brand-banner img {
+      width: 100%;
+      height: auto;
+      max-height: 38px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-symbol-img {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border-subtle);
+      display: block;
+    }
+
+    .brand-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.65rem;
+      background: var(--badge-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--badge-text);
+    }
+
+    h1.page-title {
+      font-size: 2.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .header-description {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .metadata-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      align-items: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta-item strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       HIGHLIGHTS SUMMARY CARD
+       ========================================================================== */
+    .summary-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .summary-header svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .summary-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .summary-item {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1rem;
+    }
+
+    .summary-item-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .summary-item-desc {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       TABLE OF CONTENTS
+       ========================================================================== */
+    nav.toc-nav {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .toc-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.5rem 1.25rem;
+    }
+
+    .toc-item a {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.2rem 0;
+      transition: color 0.15s ease;
+    }
+
+    .toc-item a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .toc-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 1.4rem;
+    }
+
+    /* ==========================================================================
+       SECTIONS & TYPOGRAPHY
+       ========================================================================== */
+    main.policy-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2.75rem;
+    }
+
+    section.policy-section {
+      scroll-margin-top: 2rem;
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.65rem;
+    }
+
+    .section-number {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    h2.section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+
+    h3.subsection-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.5rem 0 0.5rem 0;
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 1.15rem;
+      font-size: 0.975rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin: 0 0 1.25rem 1.4rem;
+      color: var(--text-secondary);
+      font-size: 0.975rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      padding-left: 0.2rem;
+    }
+
+    li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       CALLOUT & NOTICE CARDS
+       ========================================================================== */
+    .callout {
+      background-color: var(--surface-subtle);
+      border-left: 3px solid var(--accent);
+      border-top: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.15rem;
+      margin: 1.25rem 0;
+    }
+
+    .callout p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ==========================================================================
+       CONTACT CARD
+       ========================================================================== */
+    .contact-box {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.35rem;
+      margin-top: 1rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .contact-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    a.contact-link {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    a.contact-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer.site-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       PRINT STYLES
+       ========================================================================== */
+    @media print {
+      body {
+        background: #FFFFFF;
+        color: #000000;
+        padding: 0;
+      }
+      .summary-card, nav.toc-nav, .skip-link, .brand-label {
+        display: none;
+      }
+      .page-container {
+        max-width: 100%;
+      }
+      header.site-header {
+        border-bottom: 2px solid #000000;
+      }
+      a {
+        color: #000000;
+        text-decoration: underline;
+      }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADJUSTMENTS
+       ========================================================================== */
+    @media (max-width: 600px) {
+      body {
+        padding: 0 1rem 3rem 1rem;
+      }
+      header.site-header {
+        padding: 2.25rem 0 1.5rem 0;
+      }
+      h1.page-title {
+        font-size: 1.85rem;
+      }
+      .brand-row {
+        flex-direction: row;
+        align-items: center;
+      }
+      .metadata-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
+      .footer-top, .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#content" class="skip-link">Skip to policy content</a>
+
+  <div class="page-container">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="brand-row">
+        <a href="#content" class="brand-identity" aria-label="Routiq Home">
+          <img src="./routiq-logo-symbol.png" alt="Routiq Symbol" class="brand-symbol-img" width="32" height="32">
+          <span class="brand-wordmark">Routiq</span>
+        </a>
+        <span class="brand-label">Privacy &amp; Legal</span>
+      </div>
+
+      <div class="brand-banner" aria-label="Routiq: Habit Tracker">
+        <img src="./routiq-logo-full.png" alt="Routiq: Habit Tracker Wordmark">
+      </div>
+
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="header-description">
+        Routiq is built from the ground up as a private, local-first habit tracker. All your personal habits, daily completion records, and reminders stay on your device.
+      </p>
+
+      <div class="metadata-bar">
+        <div class="meta-item">
+          <span>Effective Date:</span>
+          <strong>November 1, 2026</strong>
+        </div>
+        <div class="meta-item">
+          <span>Developer:</span>
+          <strong>Offscript</strong>
+        </div>
+        <div class="meta-item">
+          <span>Application:</span>
+          <strong>Routiq: Habit Tracker (v1.0.2)</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- Key Principles Summary -->
+    <div class="summary-card" role="region" aria-label="Privacy Highlights">
+      <div class="summary-header">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span class="summary-title">Key Privacy Highlights</span>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="summary-item-title">100% On-Device SQLite</div>
+          <div class="summary-item-desc">All tracking data, targets, and notes are stored strictly in your device's isolated local database.</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item-title">No User Accounts</div>
+          <div class="summary-item-desc">No registration, email, phone number, password, or cloud profile is ever required to use Routiq.</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item-title">Zero Remote Telemetry</div>
+          <div class="summary-item-desc">No third-party analytics, crash trackers, advertising SDKs, or data brokers are integrated.</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item-title">Offline Alarms</div>
+          <div class="summary-item-desc">Habit reminders are scheduled locally via your mobile operating system, without push notification servers.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <nav class="toc-nav" aria-label="Table of Contents">
+      <div class="toc-title">Table of Contents</div>
+      <ol class="toc-list">
+        <li class="toc-item"><a href="#section-1"><span class="toc-num">01</span> Introduction</a></li>
+        <li class="toc-item"><a href="#section-2"><span class="toc-num">02</span> Information We Handle</a></li>
+        <li class="toc-item"><a href="#section-3"><span class="toc-num">03</span> How Your Information Is Stored</a></li>
+        <li class="toc-item"><a href="#section-4"><span class="toc-num">04</span> Notifications</a></li>
+        <li class="toc-item"><a href="#section-5"><span class="toc-num">05</span> Information Sharing &amp; Third Parties</a></li>
+        <li class="toc-item"><a href="#section-6"><span class="toc-num">06</span> Data Retention &amp; Deletion</a></li>
+        <li class="toc-item"><a href="#section-7"><span class="toc-num">07</span> Data Security</a></li>
+        <li class="toc-item"><a href="#section-8"><span class="toc-num">08</span> Children's Privacy</a></li>
+        <li class="toc-item"><a href="#section-9"><span class="toc-num">09</span> Changes to This Privacy Policy</a></li>
+        <li class="toc-item"><a href="#section-10"><span class="toc-num">10</span> Contact Us</a></li>
+      </ol>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="content" class="policy-content">
+      <!-- Section 1 -->
+      <section id="section-1" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">1.</span>
+          <h2 class="section-title">Introduction</h2>
+        </div>
+        <p>
+          Welcome to <strong>Routiq</strong>.
+        </p>
+        <p>
+          Routiq is a personal habit-tracking application designed and developed by <strong>Offscript</strong> ("we", "our", or "us"). This Privacy Policy explains how information is handled when you download, install, and use the Routiq mobile application on Android and iOS devices.
+        </p>
+        <p>
+          We value your privacy as a foundational design principle. Routiq is intentionally architected to minimize the collection and transmission of personal information. The application operates on a <strong>local-first</strong> model, keeping your habits, daily routines, and personal records confined to your physical device.
+        </p>
+        <p>
+          This policy describes the categories of data stored by the application, how that data is utilized, how it is protected within the mobile operating system sandbox, and the rights and choices available to you.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="section-2" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">2.</span>
+          <h2 class="section-title">Information We Handle</h2>
+        </div>
+        <p>
+          Routiq allows you to define custom routines, log daily activities, analyze consistency over time, and configure personal reminders. All data processed by Routiq is created directly by you during your use of the application.
+        </p>
+        <p>
+          Depending on how you configure and use Routiq, the information stored locally includes:
+        </p>
+        <ul>
+          <li><strong>Habit Definitions:</strong> Habit titles, descriptions, assigned categories (e.g., Health, Productivity, Mindfulness), color identifiers, icon symbols, custom display ordering, and active or archived status.</li>
+          <li><strong>Schedules &amp; Frequencies:</strong> Configured days of the week for habit execution, effective scheduling dates, and versioned schedule updates.</li>
+          <li><strong>Tracking Goals &amp; Progress Records:</strong> Daily completion status for binary (Yes/No) habits, and numeric entries with custom units (e.g., minutes, pages, glasses) and precision settings for quantitative habits.</li>
+          <li><strong>Daily Logs &amp; Historical Records:</strong> Calendar date timestamps and daily completion snapshots used to calculate streaks, completion rates, and weekly performance highlights.</li>
+          <li><strong>Reminder Configurations:</strong> Scheduled alarm times (hour and minute), target weekdays, reminder text, and notification identifiers.</li>
+          <li><strong>Application Preferences:</strong> Local interface settings, such as selected visual theme mode (light or dark appearance).</li>
+        </ul>
+        <p>
+          This information is processed exclusively to provide the core habit-management, progress-tracking, and reminder functionality of the application.
+        </p>
+
+        <div class="callout">
+          <div class="callout-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Information Routiq Does Not Collect
+          </div>
+          <p>
+            Routiq <strong>does not</strong> collect, transmit, or process your legal name, email address, phone number, physical address, contacts, photos, camera feed, precise location, financial accounts, or device identifiers.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="section-3" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">3.</span>
+          <h2 class="section-title">How Your Information Is Stored</h2>
+        </div>
+        <p>
+          Routiq is built as an <strong>offline-first, local-first application</strong>:
+        </p>
+        <ul>
+          <li><strong>Local SQLite Database:</strong> In the current version of the application, all habits, schedules, logs, and settings are written directly to a structured SQLite database (<code style="background:var(--code-bg); padding:0.15rem 0.35rem; border-radius:3px;">personal_tracker.db</code>) located inside the application's private, sandboxed filesystem on your device.</li>
+          <li><strong>No User Account or Registration:</strong> You do not need to register an account, sign in with an email address, create credentials, or connect a social media profile. You can launch the application and track your habits immediately without authentication.</li>
+          <li><strong>No Application Backend:</strong> Offscript does not maintain a remote database, cloud server, or web API for Routiq. Your tracking records are never uploaded to Offscript servers.</li>
+        </ul>
+
+        <h3 class="subsection-title">Operating System Cloud Backups</h3>
+        <p>
+          While Routiq does not operate an application server or custom cloud synchronization service, your mobile operating system may back up the application's local storage if you have enabled system-level device backups:
+        </p>
+        <ul>
+          <li><strong>Android Auto Backup:</strong> If enabled in your Android device settings, Google Drive may automatically back up application data files into your personal Google Drive storage.</li>
+          <li><strong>iOS iCloud Backup:</strong> If enabled on your Apple device, iOS may include Routiq's local sandboxed data container as part of your scheduled, encrypted iCloud device backup.</li>
+        </ul>
+        <p>
+          These backups are managed entirely by Google or Apple, linked to your private personal account, governed by the respective operating system's privacy policies, and can be disabled at any time through your device's system settings.
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="section-4" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">4.</span>
+          <h2 class="section-title">Notifications</h2>
+        </div>
+        <p>
+          Routiq allows you to configure optional reminder notifications to prompt you to complete your habits at specific times and on specific days.
+        </p>
+        <p>
+          <strong>How Reminders Work:</strong>
+        </p>
+        <ul>
+          <li><strong>100% Local Scheduling:</strong> Reminders are scheduled directly on your device through the operating system's native alarm and notification scheduler (such as Android AlarmManager / NotificationManager and iOS UserNotifications framework).</li>
+          <li><strong>No Push Notification Servers:</strong> Routiq does not use remote push notification services, external message relays, or cloud delivery brokers. Remote push tokens are neither generated nor transmitted.</li>
+          <li><strong>Permission Management:</strong> When you first enable a reminder, Routiq requests device notification permission. Notification permission is entirely optional. If you decline, you can still use every habit-tracking and analytics feature in the app. You can modify or revoke this permission at any time through your device's system settings.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5 -->
+      <section id="section-5" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">5.</span>
+          <h2 class="section-title">Information Sharing and Third-Party Services</h2>
+        </div>
+        <p>
+          Offscript <strong>does not share, sell, rent, trade, or monetize</strong> your personal habit records, analytics, or reminder data.
+        </p>
+        <p>
+          Based on our verified source code and technical architecture:
+        </p>
+        <ul>
+          <li><strong>No Analytics SDKs:</strong> Routiq contains no behavioral tracking, user telemetry, or third-party analytics libraries (such as Google Analytics, Firebase Analytics, Mixpanel, or Amplitude).</li>
+          <li><strong>No Crash Reporting SDKs:</strong> No external automated crash reporting frameworks (such as Sentry, Crashlytics, or Bugsnag) are initialized in the application.</li>
+          <li><strong>No Advertising Networks:</strong> Routiq contains zero advertising SDKs, ad measurement tools, or behavioral profiling trackers.</li>
+          <li><strong>No Remote API Integrations:</strong> Routiq does not make network calls to external APIs, web servers, or cloud microservices during normal operation.</li>
+        </ul>
+        <p>
+          Because there is no transmission of tracking data, your habit information remains private to your device.
+        </p>
+      </section>
+
+      <!-- Section 6 -->
+      <section id="section-6" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">6.</span>
+          <h2 class="section-title">Data Retention and Deletion</h2>
+        </div>
+        <p>
+          Because Routiq stores your data locally on your device, you maintain full control over data retention and permanent deletion:
+        </p>
+        <ul>
+          <li><strong>In-App Habit Management:</strong> You can edit habits, change schedules, clear daily quantitative or binary logs, or archive habits at any time from within the application interface.</li>
+          <li><strong>Clearing Application Storage:</strong> You can permanently erase all stored habits, history, categories, and settings by navigating to your device's <em>Settings &rarr; Apps &rarr; Routiq &rarr; Storage</em> and selecting <strong>Clear Data</strong> (or <strong>Clear Storage</strong>).</li>
+          <li><strong>Uninstalling the Application:</strong> Uninstalling Routiq removes the application sandbox, permanently deleting the local SQLite database file and cancelling all pending local notification alarms from your device.</li>
+          <li><strong>Cloud Backups Deletion:</strong> If you use operating system cloud backups (Google Drive on Android or iCloud on iOS), you can manage or delete backed-up application copies directly through your Google or Apple account storage management settings.</li>
+        </ul>
+      </section>
+
+      <!-- Section 7 -->
+      <section id="section-7" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">7.</span>
+          <h2 class="section-title">Data Security</h2>
+        </div>
+        <p>
+          The security of your information relies on the physical protection of your device and the security architecture of the underlying mobile operating system:
+        </p>
+        <ul>
+          <li><strong>Application Sandboxing:</strong> Both Android and iOS isolate Routiq within a dedicated application sandbox. Under standard operating system security models, other installed applications cannot access Routiq's private files or its SQLite database.</li>
+          <li><strong>Absence of Network Transmission:</strong> Because Routiq does not transmit your habit logs across the internet to remote servers, your data is not susceptible to server-side data breaches, remote credential theft, or interception during transmission.</li>
+        </ul>
+        <p>
+          <em>User Security Recommendations:</em> We recommend protecting your device with a secure screen lock (PIN, biometric authentication, or password), avoiding rooting or jailbreaking your device, and keeping your device's operating system updated with the latest security patches.
+        </p>
+      </section>
+
+      <!-- Section 8 -->
+      <section id="section-8" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">8.</span>
+          <h2 class="section-title">Children's Privacy</h2>
+        </div>
+        <p>
+          Routiq is a general-audience productivity utility intended for personal habit tracking and self-improvement.
+        </p>
+        <p>
+          Routiq is not directed to children under the age of 13 (or under 16 in applicable European Union jurisdictions), and we do not knowingly solicit or collect personal information from children. Because the application requires no account registration, collects no personal identifiers, and transmits no information across the internet, no personal data from any user—regardless of age—is gathered, centralized, or shared.
+        </p>
+        <p>
+          If a parent or guardian has questions regarding their child's use of Routiq on a family device, they may contact us using the information provided below.
+        </p>
+      </section>
+
+      <!-- Section 9 -->
+      <section id="section-9" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">9.</span>
+          <h2 class="section-title">Changes to This Privacy Policy</h2>
+        </div>
+        <p>
+          We may update this Privacy Policy from time to time to reflect changes in application features, legal requirements, or operational practices.
+        </p>
+        <p>
+          When updates are made, the revised policy will be published at this public URL with an updated <strong>Effective Date</strong>. For material modifications, we will provide additional notice within the application or via release notes in the relevant app store.
+        </p>
+        <p>
+          We encourage you to review this Privacy Policy periodically to stay informed about how your information is protected.
+        </p>
+      </section>
+
+      <!-- Section 10 -->
+      <section id="section-10" class="policy-section">
+        <div class="section-header">
+          <span class="section-number">10.</span>
+          <h2 class="section-title">Contact Us</h2>
+        </div>
+        <p>
+          If you have any questions, feedback, or concerns regarding this Privacy Policy or Routiq's data practices, please contact us:
+        </p>
+
+        <div class="contact-box">
+          <div class="contact-row">
+            <span class="contact-label">Developer</span>
+            <span class="contact-value">Offscript</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Application</span>
+            <span class="contact-value">Routiq: Habit Tracker</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">Privacy Inquiries</span>
+            <span class="contact-value">
+              <a href="mailto:adithya.dev.online@gmail.com" class="contact-link">adithya.dev.online@gmail.com</a>
+            </span>
+          </div>
+        </div>
+
+        <p style="margin-top: 1.25rem; font-size: 0.875rem; color: var(--text-muted);">
+          <em>Note for users: If your deployment uses a different official contact address, please ensure inquiries are directed to Offscript's designated support channel.</em>
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="./routiq-logo-symbol.png" alt="Routiq Symbol" class="footer-symbol-img" width="22" height="22">
+          <span>Routiq: Habit Tracker</span>
+        </div>
+        <div class="footer-links">
+          <a href="#content">Back to Top</a>
+          <a href="mailto:adithya.dev.online@gmail.com">Contact Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Developed by <strong>Offscript</strong></span>
+        <span>&copy; 2026 Offscript. All rights reserved.</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
